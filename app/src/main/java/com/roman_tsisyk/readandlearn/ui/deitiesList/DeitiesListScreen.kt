@@ -1,6 +1,5 @@
 package com.roman_tsisyk.readandlearn.ui.deitiesList
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,8 +22,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.roman_tsisyk.readandlearn.data.model.Deity
 import com.roman_tsisyk.readandlearn.data.model.Result
-import com.roman_tsisyk.readandlearn.extensions.addBaseURL
-import com.roman_tsisyk.readandlearn.extensions.transformUrl
+import com.roman_tsisyk.readandlearn.utils.addBaseURL
+import com.roman_tsisyk.readandlearn.utils.transformUrl
 
 
 @Composable

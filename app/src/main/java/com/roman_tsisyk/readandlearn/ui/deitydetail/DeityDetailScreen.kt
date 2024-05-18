@@ -20,8 +20,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
-import com.roman_tsisyk.readandlearn.extensions.addBaseURL
-import com.roman_tsisyk.readandlearn.extensions.transformUrl
+import com.roman_tsisyk.readandlearn.utils.addBaseURL
+import com.roman_tsisyk.readandlearn.utils.transformUrl
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
 @Composable

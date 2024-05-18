@@ -66,6 +66,7 @@ dependencies {
     implementation (libs.androidx.runtime.livedata)
     implementation (libs.androidx.multidex)
     implementation(libs.coil.compose)
+    implementation( "androidx.compose.material:material:1.6.7" ) // Ensure this line is included
 
 
     // Compose UI

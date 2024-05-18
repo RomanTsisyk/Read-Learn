@@ -12,7 +12,11 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,9 +33,14 @@ import com.roman_tsisyk.readandlearn.utils.transformUrl
 @Composable
 fun DeitiesListScreen(onDeityClick: (String) -> Unit) {
     val viewModel: DeitiesListViewModel = hiltViewModel()
-    val deitiesState = viewModel.deities.observeAsState()
+    val deitiesState by viewModel.deities.observeAsState()
 
-    when (val result = deitiesState.value) {
+//    val filteredDeities = deitiesState.filter  {
+//        it.name.contains(searchQuery, ignoreCase = true)
+//    }
+
+
+    when (val result = deitiesState) {
         is Result.Loading -> LoadingView()
         is Result.Success<*> -> DeitiesList(deities = result.data as List<Deity>, onDeityClick)
         is Result.Error -> ErrorView(error = result.exception)
@@ -48,6 +57,10 @@ fun LoadingView() {
 
 @Composable
 fun DeitiesList(deities: List<Deity>, onDeityClick: (String) -> Unit) {
+    val searchQuery by remember { mutableStateOf("") }
+    val filteredDeities = deities.filter {
+        it.name.contains(searchQuery, ignoreCase = true)
+    }
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()

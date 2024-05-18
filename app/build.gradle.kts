@@ -65,6 +65,7 @@ dependencies {
     // unsorted
     implementation (libs.androidx.runtime.livedata)
     implementation (libs.androidx.multidex)
+    implementation(libs.coil.compose)
 
 
     // Compose UI

@@ -1,4 +1,4 @@
-package com.roman_tsisyk.readandlearn.ui.viewmodel
+package com.roman_tsisyk.readandlearn.ui.deitiesList
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -15,7 +15,10 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class DeityViewModel @Inject constructor (private val repository: DeityRepository) : ViewModel() {
+class DeitiesListViewModel @Inject constructor(
+    private val repository: DeityRepository
+) : ViewModel() {
+
     private val _deities = MutableLiveData<Result<List<Deity>>>()
     val deities: LiveData<Result<List<Deity>>> = _deities
 

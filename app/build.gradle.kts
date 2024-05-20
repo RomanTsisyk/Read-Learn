@@ -18,7 +18,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.roman_tsisyk.readandlearn"
+        applicationId = "slavic_api.github.io.android"
         minSdk = 29
         targetSdk = 34
         versionCode = 1

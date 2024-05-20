@@ -66,8 +66,12 @@ dependencies {
     implementation (libs.androidx.runtime.livedata)
     implementation (libs.androidx.multidex)
     implementation(libs.coil.compose)
-    implementation( "androidx.compose.material:material:1.6.7" ) // Ensure this line is included
+    implementation( libs.androidx.material )
 
+    // Room components
+    implementation (libs.androidx.room.runtime)
+    kapt (libs.androidx.room.compiler)
+    implementation (libs.androidx.room.ktx)
 
     // Compose UI
     implementation(libs.ui)

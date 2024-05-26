@@ -17,10 +17,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import com.roman_tsisyk.readandlearn.R
 import slavic_api.github.io.android.data.model.Deity
 import slavic_api.github.io.android.data.model.Result
 import slavic_api.github.io.android.ui.deitiesList.DeitiesList
@@ -49,6 +52,7 @@ fun DeityDetailScreen(deityId: String) {
 
 @Composable
 fun DeityDetail(deity: Deity) {
+    val placeholder: Painter = painterResource(id = R.drawable.ic_placeholder)
 
     val imageURl = deity.detailImageUrl.addBaseURL().transformUrl()
     Log.d("Roman", "$deity = deity")
@@ -64,7 +68,9 @@ fun DeityDetail(deity: Deity) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(300.dp),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
+            placeholder = placeholder,
+            error = placeholder
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(

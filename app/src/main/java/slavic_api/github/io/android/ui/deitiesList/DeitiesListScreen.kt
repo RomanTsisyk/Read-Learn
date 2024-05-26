@@ -19,10 +19,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import com.roman_tsisyk.readandlearn.R
 import slavic_api.github.io.android.data.model.Deity
 import slavic_api.github.io.android.data.model.Result
 import slavic_api.github.io.android.utils.addBaseURL
@@ -56,6 +59,7 @@ fun LoadingView() {
 
 @Composable
 fun DeitiesList(deities: List<Deity>, onDeityClick: (String) -> Unit) {
+
     val searchQuery by remember { mutableStateOf("") }
     val filteredDeities = deities.filter {
         it.name.contains(searchQuery, ignoreCase = true)
@@ -73,6 +77,7 @@ fun DeitiesList(deities: List<Deity>, onDeityClick: (String) -> Unit) {
 
 @Composable
 fun DeityListItem(god: Deity, onClick: (String) -> Unit) {
+    val placeholder: Painter = painterResource(id = R.drawable.ic_placeholder)
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -87,7 +92,9 @@ fun DeityListItem(god: Deity, onClick: (String) -> Unit) {
                 contentDescription = "${god.name} thumbnail",
                 modifier = Modifier
                     .fillMaxWidth(),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
+                placeholder = placeholder,
+                error = placeholder
             )
             Text(text = god.name, style = MaterialTheme.typography.titleMedium)
             Text(text = god.description)

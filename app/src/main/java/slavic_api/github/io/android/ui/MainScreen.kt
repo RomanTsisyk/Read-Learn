@@ -69,7 +69,7 @@ fun DrawerContent(navController: NavHostController, scaffoldState: ScaffoldState
         ).forEach { (screen, title) ->
             Text(
                 text = title,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)

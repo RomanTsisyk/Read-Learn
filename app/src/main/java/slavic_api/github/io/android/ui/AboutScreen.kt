@@ -1,37 +1,65 @@
 package slavic_api.github.io.android.ui
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun AboutScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        Text(text = "About This App", style = MaterialTheme.typography.titleSmall)
-        Spacer(modifier = Modifier.height(16.dp))
+    val context = LocalContext.current
 
-        Text(
-            text = "Read & Learn is an educational app designed to provide information about Slavic deities. The app features a list of deities with detailed descriptions and attributes. You can also customize your experience with various settings.",
-            style = MaterialTheme.typography.bodyMedium
-        )
-        Spacer(modifier = Modifier.height(16.dp))
+    Scaffold(
+        content = { paddingValues ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "Slavic Deities App",
+                    style = MaterialTheme.typography.h4,
+                    textAlign = TextAlign.Center
+                )
 
-        Text(
-            text = "Version: 1.0",
-            style = MaterialTheme.typography.bodyMedium
-        )
-        Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-        Text(
-            text = "Developed by: Roman Tsisyk",
-            style = MaterialTheme.typography.bodyMedium
-        )
-    }
+                Text(
+                    text = "This app provides detailed information about various Slavic deities, their attributes, symbols, and associated myths. It is a part of the Slavic API project available on GitHub.",
+                    style = MaterialTheme.typography.body1,
+                    textAlign = TextAlign.Center
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Text(
+                    text = "For more information, visit the project repository:",
+                    style = MaterialTheme.typography.body1,
+                    textAlign = TextAlign.Center
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Button(
+                    onClick = {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/slavic-api"))
+                        context.startActivity(intent)
+                    },
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue)
+                ) {
+                    Text(text = "GitHub Repository", color = Color.White)
+                }
+            }
+        }
+    )
 }

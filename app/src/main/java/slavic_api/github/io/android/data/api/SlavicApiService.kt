@@ -9,7 +9,7 @@ import retrofit2.http.Path
 interface SlavicApiService {
 
     @GET("slavic-api/API/main/en/deities_list.json")
-    suspend fun fetchDeities(): Response<DeitiesResponse>
+    suspend fun getDeities(): Response<DeitiesResponse>
 
     @GET("slavic-api/API/main/en/deities/{id}.json")
     suspend fun getDeity(@Path("id") id: String): DeityResponse

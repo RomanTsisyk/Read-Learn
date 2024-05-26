@@ -4,18 +4,17 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import slavic_api.github.io.android.data.model.Deity
 
 @Dao
 interface DeityDao {
-    @Query("SELECT * FROM deities")
-    suspend fun getAllDeities(): List<DeityDB>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertDeity(deity: Deity)
 
     @Query("SELECT * FROM deities WHERE id = :id")
-    suspend fun getDeityById(id: String): DeityDB?
+    suspend fun getDeityById(id: String): Deity?
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertDeities(deities: List<DeityDB>)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertDeity(deity: DeityDB)
+    @Query("SELECT * FROM deities")
+    suspend fun getAllDeities(): List<Deity>
 }
+

@@ -5,13 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import slavic_api.github.io.android.DeityRepository
-import slavic_api.github.io.android.data.model.DeitiesResponse
-import slavic_api.github.io.android.data.model.Deity
 import slavic_api.github.io.android.data.model.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Response
+import slavic_api.github.io.android.data.model.Deity
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,18 +24,11 @@ class DeitiesListViewModel @Inject constructor(
     }
 
     private fun fetchDeities() {
-        viewModelScope.launch(Dispatchers.IO) {
-            _deities.postValue(Result.Loading)
+        viewModelScope.launch {
+            _deities.value = Result.Loading
             try {
-                val response: Response<DeitiesResponse> = repository.getDeities()
-                if (response.isSuccessful && response.body() != null) {
-                    _deities.postValue(Result.Success(response.body()?.gods ?: emptyList()))
-                } else {
-                    _deities.postValue(
-                        Result.Error(Exception( "Failed to fetch data" ))
-                    )
-                }
-
+                val result: Result<List<Deity>> = repository.getAllDeities()
+                _deities.postValue(result)
             } catch (e: Exception) {
                 _deities.postValue(Result.Error(e))
             }

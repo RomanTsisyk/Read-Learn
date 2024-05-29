@@ -10,7 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import slavic_api.github.io.android.ui.AboutScreen
 import slavic_api.github.io.android.ui.LibrariesScreen
-import slavic_api.github.io.android.ui.SettingsScreen
+import slavic_api.github.io.android.ui.settings.SettingsScreen
 import slavic_api.github.io.android.ui.deitiesList.DeitiesListScreen
 import slavic_api.github.io.android.ui.deitydetail.DeityDetailScreen
 

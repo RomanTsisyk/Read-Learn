@@ -74,6 +74,7 @@ dependencies {
     implementation (libs.androidx.room.ktx)
 
     // Compose UI
+    implementation (libs.androidx.runtime.livedata)
     implementation(libs.ui)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
